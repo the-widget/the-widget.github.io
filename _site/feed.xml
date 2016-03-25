@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Coding Journey</title>
+    <description>This blog is meant to document my personal experience of learning how to  code with no previous experience..
+</description>
+    <link>http://the-widget.github.io/</link>
+    <atom:link href="http://the-widget.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 24 Mar 2016 20:08:24 -0400</pubDate>
+    <lastBuildDate>Thu, 24 Mar 2016 20:08:24 -0400</lastBuildDate>
+    <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Building A CLI Gem: Making of RunSwimHike NYC</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://farm2.staticflickr.com/1590/25234838110_ef39acc1fb.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the Final Projects in Learn.co’s Object Orientation Module is to build your own CLI Gem. We are required to publish our Gem on RubyGems and make it available for anyone to try. Feel free to check out the source code here: &lt;a href=&quot;https://github.com/the-widget/run-swim-hike-nyc&quot;&gt;RunSwimHike NYC&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;research-phase&quot;&gt;&lt;strong&gt;Research Phase:&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Previous to this project we studied Object Oriented Programming and site scraping using Nokogiri. I heard fellow students complaining about their gems quickly ‘breaking’ due to changes in the website, so I wanted to find a relatively stable source. I remember hearing about NYC Open Data which provides over 1300 data sets on everything from public toilets to real-time traffic speed detectors. I went through several dozens of data sets until I decided I would settle on places to get some exercise. Soon after, I decided on the name and subject for my CLI gem. “RunSwimHike NYC”. NYC Open Data provided these data sets in ‘xml’ format, which I had no previous experience of scraping, but it seemed easy enough.&lt;/p&gt;
+
+&lt;h2 id=&quot;planning-phase&quot;&gt;&lt;strong&gt;Planning Phase:&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;I wanted this gem to be flexible, organized and useful. Since there was a lot of information to deal with, I wanted to divide the menus up into three main categories: naturally… Run , Swim and Hike. After that was established, the user should pick one of five boroughs. After viewing a numbered list of names and locations, the user should be able to get more information about the facility and have direct access to a Google Maps listing. Here’s a basic overview of the workflow:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Welcome!
+    &lt;ul&gt;
+      &lt;li&gt;Run&lt;/li&gt;
+      &lt;li&gt;Swim (should offer Indoor/Outdoor options)&lt;/li&gt;
+      &lt;li&gt;Hike
+        &lt;ul&gt;
+          &lt;li&gt;Bronx&lt;/li&gt;
+          &lt;li&gt;Brooklyn&lt;/li&gt;
+          &lt;li&gt;Manhattan&lt;/li&gt;
+          &lt;li&gt;Queens&lt;/li&gt;
+          &lt;li&gt;Staten Island
+            &lt;ul&gt;
+              &lt;li&gt;:facility list:&lt;/li&gt;
+              &lt;li&gt;:individual facility info:&lt;/li&gt;
+              &lt;li&gt;‘open a Google Map listing’&lt;/li&gt;
+              &lt;li&gt;‘go back to facility list’&lt;/li&gt;
+              &lt;li&gt;‘reset program’&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;‘option to quit/reset at anytime’&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I decided to create a main CLI class, and a seperate class for each activity along with it’s own scraper class.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CLI
+    &lt;ul&gt;
+      &lt;li&gt;Run Scraper&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Run Class&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Swim Scraper&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Swim Class&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Hike Scraper&lt;/li&gt;
+      &lt;li&gt;Hike Class&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;strategy&quot;&gt;&lt;strong&gt;Strategy:&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Get &lt;strong&gt;everything&lt;/strong&gt; working with the Run/Run Scraper class including menus and all features. Then, copy and apply to the next two subjects. This strategy really paid off in the end, and completing the last two sections was like a breeze.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Scrape, collect, and create instances of all objects upon the user’s choice of Run, Swim or Hike. Iterate through an array of instances to display information.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use class methods to allow all instances to be iterated over easily.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;lessons-learned&quot;&gt;&lt;strong&gt;Lessons Learned:&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;After figuring out how to parse xml files, my biggest challenge was designing a system that allowed the user to return to a previous window. This was especially challenging for the Swim class, because I wanted to offer the option for Indoor/Outdoor pools, which meant I needed to interate through all the instances of Swim again. Here were some takeaways:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Pre-planning goes a &lt;strong&gt;long&lt;/strong&gt; way.
+    &lt;ul&gt;
+      &lt;li&gt;Put yourself in the shoes of the user. Become the user and see what function you would like to see. Try to predict what would annoy/please you.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Commit more frequently.
+    &lt;ul&gt;
+      &lt;li&gt;I found myself getting so caught up in progamming that I wasn’t committing until a huge chunk of the program was finished. At one point, my MacBook Air froze up and I did a hard reset. Luckily, none of my progress was lost, but luck doesn’t always take your side.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Take more notes along the way.
+    &lt;ul&gt;
+      &lt;li&gt;There’s a huge amount of learning that happens during the programming process. If these valuable lessons can documented, you can further solidify your own understanding and share it with others.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;little-extras&quot;&gt;&lt;strong&gt;Little Extras:&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Adding little personal touches to a CLI program can make it feel more human. Here were a few extra features that I incorporated into this program:&lt;/p&gt;
+
+&lt;h3 id=&quot;spinny&quot;&gt;Spinny&lt;/h3&gt;
+&lt;p&gt;This is a spinning icon that runs in your cursor space while you wait for information to load. Here is the source code for that:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def self.spinny  
+n=0
+a=[&quot;-&quot;,&quot;\\&quot;,&quot;|&quot;,&quot;/&quot;].cycle do |a|
+  print a
+  print &quot;\b&quot;
+  n+=1
+  sleep 0.1
+  break if (n % 6).zero?
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;sleep&quot;&gt;Sleep&lt;/h3&gt;
+&lt;p&gt;I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;sleep&lt;/code&gt; keyword to mimick loading time, but I used it so allow the user to see the spinny, as well as to animate a list of parks being printed. Instead of it just appearing suddenly, it puts 4/100ths of a second between each &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt;. Here is an example from my Run class:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def self.display_borough(borough)
+spinny
+index = 0
+puts &quot; \nHere are the Running Tracks in #{borough}: \n &quot;
+spinny
+parks.each do |track|
+  if track.borough == borough
+    parks &amp;lt;&amp;lt; track unless parks.include?(track)
+    puts &quot;#{index+1}. #{track.name} - #{track.location}&quot;
+    index += 1
+    sleep(0.04)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;farewell&quot;&gt;Farewell&lt;/h3&gt;
+&lt;p&gt;This bids the user farewell with a unique message before quitting the program. I set a class variable equal to an array of farewell messages, and used the &lt;code class=&quot;highlighter-rouge&quot;&gt;.sample&lt;/code&gt; method to choose one at random. Here is the code for my &lt;code class=&quot;highlighter-rouge&quot;&gt;quit&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  @@farewell = [&quot;Have a nice day!&quot;, &quot;Take care of yourself!&quot;, &quot;You&#39;ll never regret some good excercise!&quot;, &quot;Have fun!&quot;, &quot;Thanks for checking us out!&quot;, &quot;Keep running, swimming and hiking!&quot;, &quot;:)&quot;]
+
+  def self.quit
+    puts &quot; \n&quot;
+    abort(&quot;#{@@farewell.sample} \n &quot;)
+  end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 29 Feb 2016 15:18:20 -0500</pubDate>
+        <link>http://the-widget.github.io/ruby/gem/cli/2016/02/29/building-cli-gem.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/ruby/gem/cli/2016/02/29/building-cli-gem.html</guid>
+        
+        
+        <category>ruby</category>
+        
+        <category>gem</category>
+        
+        <category>cli</category>
+        
+      </item>
+    
+  </channel>
+</rss>
