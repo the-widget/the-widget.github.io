@@ -6,9 +6,133 @@
 </description>
     <link>http://the-widget.github.io/</link>
     <atom:link href="http://the-widget.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 24 Mar 2016 20:08:24 -0400</pubDate>
-    <lastBuildDate>Thu, 24 Mar 2016 20:08:24 -0400</lastBuildDate>
+    <pubDate>Mon, 28 Mar 2016 16:38:05 -0400</pubDate>
+    <lastBuildDate>Mon, 28 Mar 2016 16:38:05 -0400</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Sinatra Web App: Bhagavad-Gita As It Is Community Index</title>
+        <description>&lt;p&gt;This project was done as a final assessment in Learn.co’s Fullstack Web Development course for the Sinatra section. We were tasked to create CRUD (Create, Read, Update, Delete) app of our choice. CRUD apps are sometimes referred to as Content Management Systems. I decided to make a community index for the world renouned book &lt;em&gt;“Bhagavad-Gita As It Is”&lt;/em&gt;, by &lt;em&gt;His Divine Grace A.C. Bhaktivedanta Swami Prabhupada&lt;/em&gt;. I was deeply transformed by the study of this book, and felt inspired to implement it into my study of programming. I observed that by dovetailing the things you already enjoy with new things you are learning, it makes the process so much more engaging.&lt;/p&gt;
+
+&lt;h2 id=&quot;planning&quot;&gt;Planning:&lt;/h2&gt;
+&lt;p&gt;Because this book requires a lifetime of study to actually absorb and implement it’s teachings, it would be useful to create a sort of quick reference guide based on topics. It would also be nice if the information was accessible to everyone, even if you don’t create a login. Here is my basic plan…&lt;/p&gt;
+
+&lt;p&gt;This program will allow Users to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Login.&lt;/li&gt;
+  &lt;li&gt;Create index’s defined by a Topic name, which references a Verse’s content.&lt;/li&gt;
+  &lt;li&gt;View index’s from all Users.&lt;/li&gt;
+  &lt;li&gt;Edit any attribute of an index.&lt;/li&gt;
+  &lt;li&gt;Be restricted from adding a Topic or Verse that was already made.&lt;/li&gt;
+  &lt;li&gt;Logout.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Non-registered Users will be able to view all the data on the website, but will not be able to contribute in any way. (Even if they slap on ‘/new’ or ‘/edit’ to the base of the URL)&lt;/p&gt;
+
+&lt;h3 id=&quot;has-many-to-has-many-relationships&quot;&gt;Has Many to Has Many Relationships&lt;/h3&gt;
+&lt;p&gt;The relationships between the classes will be as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;User has many Topics&lt;/li&gt;
+  &lt;li&gt;Topic has many Users&lt;/li&gt;
+  &lt;li&gt;Topic has many Verses&lt;/li&gt;
+  &lt;li&gt;Verse has many Topics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This will require two Join Talbes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UserTopics&lt;/li&gt;
+  &lt;li&gt;TopicVerses&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;it-isnt-as-simple-as-it-sounds&quot;&gt;It Isn’t As Simple As It Sounds&lt;/h2&gt;
+&lt;p&gt;Although the concept of this program is simple enough to understand, to get a computer to comprehend everything takes a load of work. My first hurdle came when I needed the User, Topic and Verse all to associate with each other upon creation. The next challenge was allowing every detail to be editted, and creating an edit form that shows you the current setup of your object. I learned a few tricks along the way. Here are a few:&lt;/p&gt;
+
+&lt;h3 id=&quot;disappearing-buttons&quot;&gt;Disappearing Buttons&lt;/h3&gt;
+&lt;p&gt;Want certain buttons to appear only when you want them to? Simply use a clever line of &lt;strong&gt;erb&lt;/strong&gt; such as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;input type=&quot;&amp;lt;%= is_logged_in ? &#39;submit&#39; : &#39;hidden&#39; %&amp;gt;&quot; value=&quot;Edit Topic&quot;&amp;gt;&lt;/code&gt;
+This makes your &lt;code class=&quot;highlighter-rouge&quot;&gt;type=&lt;/code&gt; conditional based on the controller’s helper method &lt;code class=&quot;highlighter-rouge&quot;&gt;#is_logged_in&lt;/code&gt; which is simply:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; def is_logged_in
+    !!session[:user_id]
+ end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;diplaying-error-messages&quot;&gt;Diplaying Error Messages&lt;/h3&gt;
+&lt;p&gt;I used these two ways for displaying error messages:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;locals: method&lt;/strong&gt; - 
+You can plug this in to your controller action.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;erb :&quot;users/login&quot;, locals: {message: &quot;Invalid username or password! Please try again.&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And this in your views.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;% unless locals.empty? %&amp;gt;
+  &amp;lt;%= message %&amp;gt;
+&amp;lt;% end %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;redirect ‘/’ method&lt;/strong&gt;
+Plug this in to your controller action.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;message = &quot;* You Must Be Logged In To Contribute*&quot;
+redirect &quot;/whatever_page?message=#{message}&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And this in your views.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;%= @message %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;pop-out-window&quot;&gt;Pop Out Window&lt;/h3&gt;
+&lt;p&gt;This feature gives you a clickable link which reveals a window into another website. For example: look at the picture below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://farm2.staticflickr.com/1579/25494709784_be29dbe9e5.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You see the link on the very bottom?  If you click that link, this opens in the same page:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://farm2.staticflickr.com/1522/25826633940_3503ebf531.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ll paste the code that I used for this feature below, and you can decode where to place your own information. It’s all HTML, no CSS so it’s a bit bulky, but it works!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;a href=&quot;#&quot; id=&quot;show_id&quot; onclick=&quot;document.getElementById(&#39;spoiler_id&#39;).style.display=&#39;&#39;; document.getElementById(&#39;show_id&#39;).style.display=&#39;none&#39;;&quot; class=&quot;link&quot;&amp;gt;[Full View w/ Sanskrit, English Diacritics, Word-for-Word Translation &amp;amp; Purport]&amp;lt;/a&amp;gt;
+&amp;lt;span id=&quot;spoiler_id&quot; style=&quot;display: none&quot;&amp;gt;&amp;lt;a href=&quot;#&quot; onclick=&quot;document.getElementById(&#39;spoiler_id&#39;).style.display=&#39;none&#39;; document.getElementById(&#39;show_id&#39;).style.display=&#39;&#39;;&quot; class=&quot;link&quot;&amp;gt;[Hide]&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;div id=&quot;purport&quot;&amp;gt; 
+  &amp;lt;object type=&quot;text/html&quot; data=&quot;http://www.vedabase.com/en/bg/&amp;lt;%=@verse.chapter%&amp;gt;/&amp;lt;%=@verse.verse%&amp;gt;&quot; width=&quot;800px&quot; height=&quot;800px&quot; style=&quot;overflow:auto;border:5px ridge blue&quot;&amp;gt;&amp;lt;/object&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;requesting-authorization&quot;&gt;Requesting Authorization&lt;/h3&gt;
+
+&lt;p&gt;I created a permissions model which would restrict users from editting information until they received permission and were added to a list of authorized users. The only unrealistic part about this model is that once you click the “Request Permission…” button, you are immediately granted access. In a real-world situation, I would implement a system that sends out an email to the Administrator, allowing him to either Accept or Deny the request. This opened another set of challenges, which was to create a system that checked the User’s status in relation to many objects within the program.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;This project was very fun and challenging for me. Although I may have spent a little more time than I had wanted to, the experience of riding the waves over several days proved to me that I actually like this stuff. It also revealed to me why Web Developers have to work in teams. There is just too many things to think about to tackle it on your own. I also found that no matter how much pre-planning I tried to do, I always ended up tackling a new feature that I never planned to from the start. Regardless, the pre-planning probably saved me hours of time in the initial setup. Now that this is over, it’s on to Ruby on Rails!!&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 27 Mar 2016 19:20:20 -0400</pubDate>
+        <link>http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment-project.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment-project.html</guid>
+        
+        
+        <category>sinatra</category>
+        
+        <category>ruby</category>
+        
+        <category>app</category>
+        
+      </item>
     
       <item>
         <title>Building A CLI Gem: Making of RunSwimHike NYC</title>
