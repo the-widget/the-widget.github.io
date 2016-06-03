@@ -6,9 +6,24 @@
 </description>
     <link>http://the-widget.github.io/</link>
     <atom:link href="http://the-widget.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 03 Jun 2016 10:01:04 -0400</pubDate>
-    <lastBuildDate>Fri, 03 Jun 2016 10:01:04 -0400</lastBuildDate>
-    <generator>Jekyll v3.1.1</generator>
+    <pubDate>Fri, 03 Jun 2016 13:53:10 -0400</pubDate>
+    <lastBuildDate>Fri, 03 Jun 2016 13:53:10 -0400</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Rails Web App: Simple Sign Up</title>
+        <description>&lt;p&gt;SO&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Jun 2016 10:25:20 -0400</pubDate>
+        <link>http://the-widget.github.io/rails/ruby/2016/06/03/rails-assessment.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/rails/ruby/2016/06/03/rails-assessment.html</guid>
+        
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+      </item>
     
       <item>
         <title>Sinatra Web App: Bhagavad-Gita As It Is Community Index</title>
@@ -121,11 +136,10 @@ redirect &quot;/whatever_page?message=#{message}&quot;
 &lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
 
 &lt;p&gt;This project was very fun and challenging for me. Although I may have spent a little more time than I had wanted to, the experience of riding the waves over several days proved to me that I actually like this stuff. It also revealed to me why Web Developers have to work in teams. There is just too many things to think about to tackle it on your own. I also found that no matter how much pre-planning I tried to do, I always ended up tackling a new feature that I never planned to from the start. Regardless, the pre-planning probably saved me hours of time in the initial setup. Now that this is over, it’s on to Ruby on Rails!!&lt;/p&gt;
-
 </description>
         <pubDate>Sun, 27 Mar 2016 19:20:20 -0400</pubDate>
-        <link>http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment-project.html</link>
-        <guid isPermaLink="true">http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment-project.html</guid>
+        <link>http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/sinatra/ruby/app/2016/03/27/sinatra-assessment.html</guid>
         
         
         <category>sinatra</category>
@@ -283,8 +297,8 @@ end
 &lt;/div&gt;
 </description>
         <pubDate>Mon, 29 Feb 2016 15:18:20 -0500</pubDate>
-        <link>http://the-widget.github.io/ruby/gem/cli/2016/02/29/building-cli-gem.html</link>
-        <guid isPermaLink="true">http://the-widget.github.io/ruby/gem/cli/2016/02/29/building-cli-gem.html</guid>
+        <link>http://the-widget.github.io/ruby/gem/cli/2016/02/29/cli-gem-project.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/ruby/gem/cli/2016/02/29/cli-gem-project.html</guid>
         
         
         <category>ruby</category>

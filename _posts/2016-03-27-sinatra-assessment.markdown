@@ -95,6 +95,3 @@ I created a permissions model which would restrict users from editting informati
 ## Conclusions
 
 This project was very fun and challenging for me. Although I may have spent a little more time than I had wanted to, the experience of riding the waves over several days proved to me that I actually like this stuff. It also revealed to me why Web Developers have to work in teams. There is just too many things to think about to tackle it on your own. I also found that no matter how much pre-planning I tried to do, I always ended up tackling a new feature that I never planned to from the start. Regardless, the pre-planning probably saved me hours of time in the initial setup. Now that this is over, it's on to Ruby on Rails!!
-
-
-
