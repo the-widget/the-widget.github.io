@@ -23,4 +23,3 @@ The most difficult part of this assignment was implementing Oauth for Facebook. 
 
 There were many more features I wanted to implement, but for the sake of my studying and urgent need to find a job, I decided to move forward in my Coding Journey.
 
-
