@@ -6,9 +6,172 @@
 </description>
     <link>http://the-widget.github.io/</link>
     <atom:link href="http://the-widget.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 Jun 2016 09:19:59 -0400</pubDate>
-    <lastBuildDate>Tue, 14 Jun 2016 09:19:59 -0400</lastBuildDate>
+    <pubDate>Tue, 14 Jun 2016 16:04:19 -0400</pubDate>
+    <lastBuildDate>Tue, 14 Jun 2016 16:04:19 -0400</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Rails App w/ jQuery Front-End</title>
+        <description>&lt;h2 id=&quot;simple-sign-up-part-2&quot;&gt;Simple Sign Up (part 2)&lt;/h2&gt;
+&lt;p&gt;In a previous blog post I covered my first Rails App called Simple Sign Up, which was the Rails Assessment project for &lt;a href=&quot;https://learn.co/&quot;&gt;Learn.co&lt;/a&gt;. In the next section, Rails &amp;amp; Javascript, our assessment project was to take the same Rails App and modify it by implementing jQuery, for the front-end. We were also tasked to create an internal API in which all the jQuery calls would be made to. Sound a little confusing? Let’s break it down in smaller bites.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-an-api&quot;&gt;What is an API?&lt;/h1&gt;
+&lt;p&gt;In brief, an API (Application Programming Interface) is a resource that allows one system to access the information on another system using standardized protocols. I sometimes visualize an API as a sort of index that you might find at the back of an encyclopedia, which has a wealth of text and images. If you are looking for a specific topic or resource, the index organizes everything, allowing you to find the corresponding pages within seconds. Imagine that someone is trying to create an iPhone app that helps you locate the nearest pizza place. Instead of finding and documenting every pizza place, the easier route would be to use those resources that already exist, such as Foursquare or Yelp. By accessing Yelp’s public API, that wealth of information can be easily accessed and consumed at your disposal.&lt;/p&gt;
+
+&lt;h1 id=&quot;about-jquery&quot;&gt;About jQuery&lt;/h1&gt;
+&lt;p&gt;jQuery is a Javascript library (of prewritten functions) which allows programmers to easily manipulate data in fascinating ways. Take Facebook for example: When you create a Post, the page never reloads, but rather seamlessly disappears and reappears on your wall. Or, when you hover the cursor over someone’s name, a small box appears revealing details about this person. This is the magic of Javascript. In this project, the main use of jQuery is in its ability to make AJAX calls to the internal API, select HTML components to manipulate, and display that information on the front-end. In short, this allows the application to access, manipulate and display information without any page redirect.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-process&quot;&gt;The Process&lt;/h1&gt;
+
+&lt;h4 id=&quot;creating-an-internal-api&quot;&gt;Creating an Internal API&lt;/h4&gt;
+&lt;p&gt;Thanks to the Rails community, we have an awesome Ruby gem called &lt;code class=&quot;highlighter-rouge&quot;&gt;active-model-serializers&lt;/code&gt; which helps us generate JSON from our object models. Here’s what my Event Serializer looks like: 
+&lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;app/serializers/event_serializer.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class EventSerializer &amp;lt; ActiveModel::Serializer
+  attributes :id, :title, :description, :date, :start_time, :end_time
+  belongs_to :user
+  has_many :tasks
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;As you can see, the &lt;code class=&quot;highlighter-rouge&quot;&gt;attributes&lt;/code&gt; keyword allows me to control what data I want serialized into JSON. This simplifies our models which may contain more information than we need. The Event Serializer also accept the keywordsm &lt;code class=&quot;highlighter-rouge&quot;&gt;belongs_to&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;has_many&lt;/code&gt;. This will take the serialized data of the related models and nest them in an array. In the screenshot below you will see an array of Tasks, which contain an array of Users.&lt;/p&gt;
+
+&lt;p&gt;Here is the corresponding &lt;code class=&quot;highlighter-rouge&quot;&gt;show&lt;/code&gt; action of the Event Controller
+&lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;app/controllers/events_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def show
+  @event = Event.find(params[:id])
+  respond_to do |format|
+    format.html { render :show }
+    format.json { render json: @event}
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This choice of &lt;code class=&quot;highlighter-rouge&quot;&gt;|format|&lt;/code&gt; allows me the flexibility to access my standard &lt;code class=&quot;highlighter-rouge&quot;&gt;show&lt;/code&gt; template, as well as my new JSON resource.
+Now, when I navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;events/:id.json&lt;/code&gt; I will see something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://c8.staticflickr.com/8/7480/27596849751_c6197b3449_z.jpg&quot; alt=&quot;JSON formatted view&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is an organized and simple resource for everything I need to access about my Event. In this JSON format, it is very easy to parse the data and move that information into my views via jQuery&lt;/p&gt;
+
+&lt;h4 id=&quot;javascript-model-objects&quot;&gt;Javascript Model Objects&lt;/h4&gt;
+
+&lt;p&gt;Now that the API is created, I can make an AJAX call to my API and create Javascript Models in order to display the data on the front-end without redirecting the page. Here is a shortened example of what that might look like: &lt;a href=&quot;https://github.com/the-widget/simple-sign-up/blob/master/app/assets/javascripts/events.js&quot;&gt;Actual Source Code on GitHub&lt;/a&gt;
+&lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascripts/event.js&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function Event(id, title, date, description, start_time, end_time, tasks, user){
+  this.id = id
+  this.title = title
+  this.date = date
+  this.description = description
+  this.start_time = start_time
+  this.end_time = end_time
+  this.tasks = tasks
+  this.user = user //Organizer
+
+  this.display_each_task = function(){
+    $.each(this.tasks, function(i, task){
+    tasks_html = tasks_html.concat(&quot;&amp;lt;a class=&#39;js-showTask&#39; href=&#39;#&#39;&quot; + &quot;data-id=&quot; + task.id + &quot; data-eventTitle=&quot; + &quot;&#39;eventTitle + &quot;&#39;&quot; + &quot; data-eventId=&quot; + task.event_id + &quot;&amp;gt;&quot; + task.title + &quot;&amp;lt;/a&amp;gt;&amp;lt;br&amp;gt;&quot;);
+    });
+  };
+};
+
+$.get(&quot;/events/&quot; + eventId + &quot;.json&quot;, function(data) {
+  var event = new Event(data[&#39;id&#39;], data[&#39;title&#39;], data[&#39;date&#39;], data[&#39;description&#39;], data[&#39;start_time&#39;], data[&#39;end_time&#39;], data[&#39;tasks&#39;], data[&#39;user&#39;]);
+  event.display_each_task();
+
+  $(&#39;.event-tasks&#39;).html(tasks_html);
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The first block of code assigns the models attributes to the Event object. Simple enough right?&lt;/p&gt;
+
+&lt;p&gt;The next block of code is the method &lt;code class=&quot;highlighter-rouge&quot;&gt;display_each_task&lt;/code&gt;, which iterates though the array of &lt;code class=&quot;highlighter-rouge&quot;&gt;Event.tasks&lt;/code&gt;, and concatenates the information into a HTML string called &lt;code class=&quot;highlighter-rouge&quot;&gt;tasks_html&lt;/code&gt;. This HTML string can now be applied to the current view through a &lt;a href=&quot;https://api.jquery.com/category/selectors/&quot;&gt;jQuery selector&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The final block of code in this example makes a &lt;code class=&quot;highlighter-rouge&quot;&gt;GET&lt;/code&gt; request to the JSON resource (in the above screenshot), creates a new instance of Event, and calls the method &lt;code class=&quot;highlighter-rouge&quot;&gt;display_each_task&lt;/code&gt; to concat that HTML string for this Event. Then the jQuery selector &lt;code class=&quot;highlighter-rouge&quot;&gt;$(&#39;.event-tasks&#39;)&lt;/code&gt; replaces the HTML in the selected &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;tasks_html&lt;/code&gt;, displaying it instantly on the page.
+The actual source code for the app is a little more complicated, but follows this basic flow.&lt;/p&gt;
+
+&lt;h1 id=&quot;challenges&quot;&gt;Challenges&lt;/h1&gt;
+
+&lt;h4 id=&quot;permissions&quot;&gt;Permissions&lt;/h4&gt;
+
+&lt;p&gt;One of the challenges I faced was controlling permissions. Using the gem &lt;code class=&quot;highlighter-rouge&quot;&gt;devise&lt;/code&gt; I set up two main User roles, organizers and members. The admin role has complete control over the entire app. Organizers can create, edit and delete Events and Tasks, and Members can sign up for Tasks.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;app/models/user.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class User &amp;lt; ActiveRecord::Base
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers =&amp;gt; [:facebook]
+
+  enum role: [:admin, :organizer, :member]
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;html.erb&lt;/code&gt; files, it is very easy to apply permissions to your views using helper methods.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;% if organizer_permissions? %&amp;gt;
+  &amp;lt;%= link_to(&quot;Create New Event&quot;, new_event_path, :id =&amp;gt; &#39;new-event&#39;)%&amp;gt;
+&amp;lt;% end %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;I needed to get more creative to implement this same concept in Javascript. I’m sure there are better solutions to achieving this goal, but here is what I decided to do:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Since the Event &lt;code class=&quot;highlighter-rouge&quot;&gt;show&lt;/code&gt; page is rendered using an &lt;code class=&quot;highlighter-rouge&quot;&gt;html.erb&lt;/code&gt; file, only an Organizer will have HTML code in the &lt;code class=&quot;highlighter-rouge&quot;&gt;.page-nav&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Using this boolean function (&lt;code class=&quot;highlighter-rouge&quot;&gt;function isEmpty( el ){return !$.trim(el.html());};&lt;/code&gt;) allowed me to test whether or not the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt; was empty, and would indicate whether the user was an Organizer or a Member.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if (!isEmpty($(&#39;.page-nav&#39;))) {
+  $(&#39;.page-nav&#39;).html(eventNav);
+;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;I used the above function to display the &lt;code class=&quot;highlighter-rouge&quot;&gt;eventNav&lt;/code&gt; only to Organizers, allowing them to edit and delete Events.&lt;/p&gt;
+
+&lt;h4 id=&quot;creating-an-array-of-unique-objects-in-javascript&quot;&gt;Creating An Array of Unique Objects in Javascript&lt;/h4&gt;
+
+&lt;p&gt;In the Event &lt;code class=&quot;highlighter-rouge&quot;&gt;show&lt;/code&gt; page, I list all the participants(users) for the Event. These participants are recognized by their association with a Task that &lt;code class=&quot;highlighter-rouge&quot;&gt;belongs_to&lt;/code&gt; that Event. Since some Users are signed up for multiple Tasks within the same Event, in order to collect a list of unique Users, there is some logic involved. While Ruby’s &lt;code class=&quot;highlighter-rouge&quot;&gt;.uniq&lt;/code&gt; method would work perfectly in this situation, we are dealing with Javascript. Here is how I implemented this logic.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var users = {} //Workers
+this.display_each_user = function() {
+  $.each(this.tasks, function(i, task){
+
+  // assigning object keys (instead of Array.push) causes an overwrite, making it unique.
+
+    $.each(task.users, function(i, user){ 
+      users[user.id] = user.name
+    });
+  });
+  for(var i in users){ // Loops through the keys in &#39;users&#39; to concat
+    users_html = users_html.concat(&quot;&amp;lt;li class=&#39;users&#39;&quot; + &quot;data-id=&quot; + i + &quot;&amp;gt;&quot; + users[i])
+  };
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The comments made in the above code describe what’s going on, but to restate the logic I will explain it in this way. By iterating two levels deep into the Users of each Task, I assigned the &lt;code class=&quot;highlighter-rouge&quot;&gt;user.id&lt;/code&gt; as the key, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;user.name&lt;/code&gt; as the value &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:user.id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;user.name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;. As it iterates through the Users, if the same User appears it will recognize the existing key and update the value rather than creating a new object. Then the last two lines of code iterates through each key in the &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; hash and concats an HTML string which lists the names.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;After completing this project, I feel a sense of satisfaction to see a working result of all the effort I put in. Javascript animations are so nice to see, and they create such a fluid feeling to the web app, an effortless page load. At the same time, I understand that this was just a tiny piece of the pie. My other links do not load via jQuery and break the smooth flow that exists in the &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;show&lt;/code&gt; pages. For example, if you updated an Event you would not be redirected to the Event via jQuery, but would be redirected to the standard &lt;code class=&quot;highlighter-rouge&quot;&gt;.html&lt;/code&gt; format in the controller. I also feel a need to understand Javascript and Ruby in a deeper way. When I look at the source code, it looks quite crowded and needs to be cleaned up. Overall I had so much fun with this project, and am looking forward to learning Angular JS in the upcoming module.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 14 Jun 2016 10:15:20 -0400</pubDate>
+        <link>http://the-widget.github.io/ruby/rails/javascript/jquery/2016/06/14/rails-w-jquery-assessment.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/ruby/rails/javascript/jquery/2016/06/14/rails-w-jquery-assessment.html</guid>
+        
+        
+        <category>ruby</category>
+        
+        <category>rails</category>
+        
+        <category>javascript</category>
+        
+        <category>jquery</category>
+        
+      </item>
     
       <item>
         <title>Rails Web App: Simple Sign Up</title>
