@@ -29,6 +29,6 @@ The benefits of learning programming are many, but one of the main benefits that
 
 As a fresh beginner, I need to be able to actively learn while I bring home the bread. Not being in a position to study at a university or pursue a college degree doesn't have to limit my abilities in this regard. Thanks to [Learn.co](http://learn.co/with/the-widget), I can become a "no-brainer" hire as a Junior Web Developer in under 8 months, no joke. In fact, I wouldn't feel confident to take up programming at all if it weren't for the success of the Flatiron School in the last 4 years. 
 
-Computer programming is a huge field encompassing many specialties, technologies and sciences but the basic fundamentals of programming can be learned in the field of Web Development. I'll be graduating from the Learn.co curriculum in just under a month and I feel like I've taken the first step towards an adventurous career which many paths and options. The real celebration will happens once I land a job, but until then... 
+Computer programming is a huge field encompassing many specialties, technologies and sciences but the basic fundamentals of programming can be learned in the field of Web Development. I'll be graduating from the Learn.co curriculum in just under a month and I feel like I've taken the first step towards an adventurous career which many paths and options. The real celebration will happens once I land a job, but until then...
 
 ### Learn. Love. Code. <3
