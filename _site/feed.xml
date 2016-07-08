@@ -6,9 +6,63 @@
 </description>
     <link>http://the-widget.github.io/</link>
     <atom:link href="http://the-widget.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 07 Jul 2016 20:07:05 -0400</pubDate>
-    <lastBuildDate>Thu, 07 Jul 2016 20:07:05 -0400</lastBuildDate>
+    <pubDate>Thu, 07 Jul 2016 21:31:21 -0400</pubDate>
+    <lastBuildDate>Thu, 07 Jul 2016 21:31:21 -0400</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Consuming APIs - Explained to my Grandma</title>
+        <description>&lt;p&gt;&lt;img style=&quot;width: 500px;&quot; src=&quot;https://i.ytimg.com/vi/B9vPoCOP7oY/maxresdefault.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;api-basic-concepts&quot;&gt;API Basic Concepts&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  Okay Mom, imagine that you just fired up Yelp, and now you’re looking for a pizza place. So you do a search for your area and you see a big list of restaurants with addresses, phone numbers, user reviews, pictures etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  Okay, I can imagine that.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  Now, that’s a lot of information, and it all has to be organized in such a way that is easy to retrieve and display for us right?. That’s where API’s come in”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  Oh okay, so sort of like my box of recipe cards? I’ve got hundreds of recipes and there all cataloged by the type. Under my desserts tab I’ve got tabs for cakes, pies and muffins which then have specific types of cakes like red velvet and -&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  Exactly, that’s a good way of thinking about it. You’ve set up a system for yourself where you can access specific points of information within a vast database.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  - and for each card it tells you the ingredients, and how much of each, and how long to cook it, and all the instructions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  You got it. Now what if this recipe box of yours had so many nice recipes, that you were asked to make that information available to millions of people to use?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  Well I’d be honored.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt; Yes, and we would need to think about a way to organize the recipe box so that anyone who uses it can follow an easy system in order to quickly get any information they want.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt; Of course, and we would need to make sure vegetarians, vegans, gluten-free and peanut sensitive people have their own list so they don’t have to read through everything to find something they can cook!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  Yes of course! That’s very nice of you. Also consider the fact that eventually people would like to contribute their own recipes to this box, or even compile their own cookbooks of specific recipes from our box. We would need to set up a system that everyone follows so that everything stays organized and it’s easy for everyone to use.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  Well this all sounds very nice and friendly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  It really is. So API’s are used in a few different ways. For example: If your recipe box has a top-secret garlic bread recipe that no one else should know about, then you need to keep that protected and inaccessible from the public. So that would be like a private API, only to be used within your organization.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt;  …&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Me:&lt;/em&gt;&lt;/strong&gt;  The trend of making public API’s available to the public has proven it’s benefits in a variety of ways. It’s more efficient, allowing a wider audience to be reached, it encourages partnerships and integrations with other services and it also better prepares the application for future scaling and changes and technology.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Grandma:&lt;/em&gt;&lt;/strong&gt; Well, if these computer geniuses would have looked at my recipe box 40 years ago we would have had flying cars and time travel by now.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 07 Jul 2016 17:15:00 -0400</pubDate>
+        <link>http://the-widget.github.io/api/development/rails/2016/07/07/explain-consuming-apis.html</link>
+        <guid isPermaLink="true">http://the-widget.github.io/api/development/rails/2016/07/07/explain-consuming-apis.html</guid>
+        
+        
+        <category>api</category>
+        
+        <category>development</category>
+        
+        <category>rails</category>
+        
+      </item>
     
       <item>
         <title>Angular - Rails Assessment Project</title>
