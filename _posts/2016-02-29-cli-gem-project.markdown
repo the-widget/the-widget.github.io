@@ -9,6 +9,8 @@ categories: ruby gem cli
 
 One of the Final Projects in Learn.co's Object Orientation Module is to build your own CLI Gem. We are required to publish our Gem on RubyGems and make it available for anyone to try. Feel free to check out the source code here: [RunSwimHike NYC](https://github.com/the-widget/run-swim-hike-nyc)
 
+<!--more-->
+
 ## **Research Phase:**
 
 Previous to this project we studied Object Oriented Programming and site scraping using Nokogiri. I heard fellow students complaining about their gems quickly 'breaking' due to changes in the website, so I wanted to find a relatively stable source. I remember hearing about NYC Open Data which provides over 1300 data sets on everything from public toilets to real-time traffic speed detectors. I went through several dozens of data sets until I decided I would settle on places to get some exercise. Soon after, I decided on the name and subject for my CLI gem. "RunSwimHike NYC". NYC Open Data provided these data sets in 'xml' format, which I had no previous experience of scraping, but it seemed easy enough.

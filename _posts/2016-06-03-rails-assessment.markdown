@@ -4,12 +4,16 @@ title: "Rails Web App: Simple Sign Up"
 date:   2016-06-03 09:25:20 -0500
 categories: rails ruby
 ---
+![ruby-on-rails](https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/RubyonRails_twitter.png?1459466545)
+
 
 #### Rails is awesome.
 
 Rails is a popular MVC framework for programming in Ruby, and it's just plain great. I haven't even touched the tip of it's potential as of yet, but as I learn more about it, I can feel my excitement building. 
 
 As part of the Learn.co curriculum, we are tasked to build a Content Management System, using "RESTful routes", complex forms and authorization (including login from an outside source ie. Facebook, Google, etc.
+
+<!--more-->
 
 This is my first self-created Rails app, and it's called Simple Sign Up. It's based off of the website SignUpGenious.com which provides a solution for organizational management. In it's current stage, it is not very useful, but nonetheless it has allowed me to understand the basic prinicples of Rails.
 

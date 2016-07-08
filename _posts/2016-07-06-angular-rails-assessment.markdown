@@ -5,9 +5,13 @@ date: 2016-07-06 13:05:00 -0500
 categories: web development angular rails
 published: true
 ---
+![angular-js](https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/AngularJS_logo.svg/2000px-AngularJS_logo.svg.png
+)
 
 ## Overview
 This was by far the most challenging experience in programming so far. Learning about the different components that make up AngularJS was a fascinating process that made me very excited to use it to build a project, but when it came down to actually planning and building a project, I found myself a little spun. At this point in time the project is ready to be assessed because it fulfilled the minimum requirements, but is in no where near complete.
+
+<!--more-->
 
 ## Angular and Rails
 Getting Angular and Rails to play nicely together was very challenging at first. It took me a while to understand how to manage persisting information to the database while updating the view in real time. I got really stuck on the User Authentication error messages as well, I was using the Devise gem and trying to tie the error messages in with Angular's front end and it took me hours to understand what was going on. 

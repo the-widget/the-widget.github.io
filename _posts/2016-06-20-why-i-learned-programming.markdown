@@ -11,6 +11,8 @@ published: true
 
 I remember waking up early in the morning, just as the sun tipped above the horizon and running upstairs to our box-shaped IBM computer with it's companion, a bubble-curved glass monitor. After hearing the whir of the cooling fan and a few clicks and beeps, I was presented with a black screen with a blinking rectangle on the far left. With my little two-year-old fingers I would type out one key at a time. `cd:/ win` Magically, the program would load and I would soon have full control over the cursor, allowing me to play Solitaire, Minesweeper, SkiFree and Oregon Trail. 
 
+<!--more-->
+
 ## Gaming
 
 As gaming developed, my interest in computer technology developed along with it. My childhood experiences with computers felt as natural as running around outside, climbing trees, discovering bugs and plants, and playing games with my friends. In fact the computer, magical as it was, seemed to take on the persona of a friend with a mental handicap, or a very primitive robot. It couldn't speak a word of English, nor could it understand me if I spoke to it and it had no idea who I was even though we spent years together in my house.

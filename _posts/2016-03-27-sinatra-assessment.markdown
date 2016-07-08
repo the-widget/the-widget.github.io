@@ -8,6 +8,8 @@ categories: sinatra ruby app
 
 This project was done as a final assessment in Learn.co's Fullstack Web Development course for the Sinatra section. We were tasked to create CRUD (Create, Read, Update, Delete) app of our choice. CRUD apps are sometimes referred to as Content Management Systems. I decided to make a community index for the world renouned book *"Bhagavad-Gita As It Is"*, by *His Divine Grace A.C. Bhaktivedanta Swami Prabhupada*. I was deeply transformed by the study of this book, and felt inspired to implement it into my study of programming. I've found that by combining the things you already enjoy with new things you are learning, it makes the process so much more engaging.
 
+<!--more-->
+
 ## Planning:
 Because this book requires a lifetime of study to actually absorb and implement it's teachings, it would be useful to create a sort of quick reference guide based on topics. It would also be nice if the information was accessible to everyone, even if you don't create a login. Here is my basic plan...
 

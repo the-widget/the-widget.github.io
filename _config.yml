@@ -16,8 +16,7 @@ url: "http://the-widget.github.io" # the base hostname & protocol for your site
 twitter_username: BrennenAwana
 github_username:  the-widget
 timezone: America/New_York
+excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown
-
-

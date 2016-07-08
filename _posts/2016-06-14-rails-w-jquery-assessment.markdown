@@ -6,8 +6,12 @@ categories: ruby rails javascript jquery
 published: true
 ---
 
+![rails-jquery](http://blog.justprofessionals.com/wp-content/uploads/2010/02/ruby-rails-jquery-release.jpg)
+
 ## Simple Sign Up (part 2)
 In a previous blog post I covered my first Rails App called Simple Sign Up, which was the Rails Assessment project for [Learn.co](https://learn.co/). In the next section, Rails & Javascript, our assessment project was to take the same Rails App and modify it by implementing jQuery, for the front-end. We were also tasked to create an internal API in which all the jQuery calls would be made to. Sound a little confusing? Let's break it down in smaller bites.
+
+<!--more-->
 
 # What is an API?
 In brief, an API (Application Programming Interface) is a resource that allows one system to access the information on another system using standardized protocols. I sometimes visualize an API as a sort of index that you might find at the back of an encyclopedia, which has a wealth of text and images. If you are looking for a specific topic or resource, the index organizes everything, allowing you to find the corresponding pages within seconds. Imagine that someone is trying to create an iPhone app that helps you locate the nearest pizza place. Instead of finding and documenting every pizza place, the easier route would be to use those resources that already exist, such as Foursquare or Yelp. By accessing Yelp's public API, that wealth of information can be easily accessed and consumed at your disposal.
