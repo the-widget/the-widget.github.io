@@ -9,7 +9,7 @@ published: true
 
 ## API Basic Concepts
 
-***Me:***  Okay Mom, imagine that you just fired up Yelp, and now you're looking for a pizza place. So you do a search for your area and you see a big list of restaurants with addresses, phone numbers, user reviews, pictures etc.
+***Me:***  Okay Grandma, imagine that you just fired up Yelp, and now you're looking for a pizza place. So you do a search for your area and you see a big list of restaurants with addresses, phone numbers, user reviews, pictures etc.
 
 ***Grandma:***  Okay, I can imagine that.
 
